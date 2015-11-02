@@ -38,6 +38,7 @@
  *   symbol, so that obsolete wrappers can be spotted.
  */
 
+
 #if LINUX_VERSION_CODE < KERNEL_VERSION(4,6,0)
 #define in_ia32_syscall() (current_thread_info()->status & TS_COMPAT)
 #endif
