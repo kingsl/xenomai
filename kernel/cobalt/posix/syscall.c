@@ -522,7 +522,7 @@ static int handle_head_syscall(struct ipipe_domain *ipd, struct pt_regs *regs)
 
 	nr = code & (__NR_COBALT_SYSCALLS - 1);
 
-	trace_cobalt_head_sysentry(thread, code);
+	trace_cobalt_head_sysentry(code);
 
 	process = cobalt_current_process();
 	if (process == NULL) {
@@ -659,7 +659,7 @@ ret_handled:
 		xnthread_sync_window(thread);
 	}
 
-	trace_cobalt_head_sysexit(thread, __xn_reg_rval(regs));
+	trace_cobalt_head_sysexit(__xn_reg_rval(regs));
 
 	return KEVENT_STOP;
 
@@ -720,7 +720,7 @@ static int handle_root_syscall(struct ipipe_domain *ipd, struct pt_regs *regs)
 	code = __xn_syscall(regs);
 	nr = code & (__NR_COBALT_SYSCALLS - 1);
 
-	trace_cobalt_root_sysentry(thread, code);
+	trace_cobalt_root_sysentry(code);
 
 	/* Processing a Xenomai syscall. */
 
@@ -799,7 +799,7 @@ ret_handled:
 		xnthread_sync_window(thread);
 	}
 
-	trace_cobalt_root_sysexit(thread, __xn_reg_rval(regs));
+	trace_cobalt_root_sysexit(__xn_reg_rval(regs));
 
 	return KEVENT_STOP;
 }

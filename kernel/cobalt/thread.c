@@ -1824,7 +1824,7 @@ int xnthread_migrate(int cpu)
 	if (sched == curr->sched)
 		goto unlock_and_exit;
 
-	trace_cobalt_thread_migrate(curr, cpu);
+	trace_cobalt_thread_migrate(cpu);
 
 	/* Move to remote scheduler. */
 	xnsched_migrate(curr, sched);
@@ -2177,7 +2177,7 @@ void xnthread_relax(int notify, int reason)
 	 * domain to the Linux domain.  This will cause the Linux task
 	 * to resume using the register state of the shadow thread.
 	 */
-	trace_cobalt_shadow_gorelax(thread, reason);
+	trace_cobalt_shadow_gorelax(reason);
 
 	/*
 	 * If you intend to change the following interrupt-free
